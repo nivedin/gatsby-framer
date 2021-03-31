@@ -13,7 +13,7 @@ import {
 const Header = ({ onCursor }) => {
   const dispatch = useGlobalDispatchContext()
 
-  const { currentTheme } = useGlobalStateContext()
+  const currentTheme = useGlobalStateContext()?.currentTheme
 
   const toggleTheme = () => {
     if (currentTheme === "dark") {

@@ -1,8 +1,10 @@
-import React, { useContext, useReducer, createContext } from "react"
+import React, { createContext, useReducer, useContext } from "react"
 
+//Define Conext
 const GlobalStateContext = createContext()
 const GlobalDispatchContext = createContext()
 
+//Reducer
 const globalReducer = (state, action) => {
   switch (action.type) {
     case "TOGGLE_THEME": {
@@ -18,10 +20,12 @@ const globalReducer = (state, action) => {
       }
     }
     default: {
-      throw new Error(`Unhandled action type:${action.type}`)
+      throw new Error(`Unhandled action type: ${action.type}`)
     }
   }
 }
+
+//Provider
 
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(globalReducer, {
@@ -30,7 +34,7 @@ export const GlobalProvider = ({ children }) => {
         ? "dark"
         : window.localStorage.getItem("theme"),
     cursorType: false,
-    cursorStyles: ["pointer", "hovered"],
+    cursorStyles: ["pointer", "hovered", "locked", "white"],
   })
 
   return (
@@ -42,7 +46,7 @@ export const GlobalProvider = ({ children }) => {
   )
 }
 
-//Custom hooks
+//custom hooks for when we want to use our global state
 export const useGlobalStateContext = () => useContext(GlobalStateContext)
 
 export const useGlobalDispatchContext = () => useContext(GlobalDispatchContext)

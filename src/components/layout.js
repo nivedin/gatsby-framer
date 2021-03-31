@@ -58,8 +58,9 @@ const Layout = ({ children }) => {
     red: "#ea2912",
   }
 
-  const { currentTheme, cursorStyles } = useGlobalStateContext()
   const dispatch = useGlobalDispatchContext()
+  const cursorStyles = useGlobalStateContext()?.cursorStyles
+  const currentTheme = useGlobalStateContext()?.currentTheme
 
   const onCursor = cursorType => {
     cursorType = (cursorStyles.includes(cursorType) && cursorType) || false
